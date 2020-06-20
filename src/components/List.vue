@@ -1,13 +1,15 @@
 <template>
     <div class="container">
         <div v-for="e in elements" v-bind:key="e.id">
+              <router-link :to="'/detail' + e.id">
               <b-card
                     :title="e.title"
               >
               <b-card-text>
                     {{e.description}}
               </b-card-text>
-              </b-card>          
+              </b-card>
+              <router-link>          
         </div>
     </div>
 </template>

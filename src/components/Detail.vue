@@ -11,6 +11,7 @@ export default {
 
     created(){
         this.find()
+        console.log(this.$route.params.id)
     },
 
     data() {
