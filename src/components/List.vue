@@ -1,10 +1,9 @@
 <template>
     <div>
-        <div class="box" v-for="e in elements" v-bind:key="e">
-            {{ e }}            
+        <div class="box" v-for="e in elements" v-bind:key="e.id">
+            {{ e.title }}            
         </div>
         <button v-on:click="findAll">Click</button>
-        {{ msj }}
     </div>
 </template>
 
@@ -12,7 +11,6 @@
 export default {
     data() {
         return {
-            msj: "... :(",
             elemets: ["Uno", "Dos", "Tres"]  
         };
     }, 
@@ -20,7 +18,7 @@ export default {
         findAll: function(){
             fech('url')
                 .then(res => res.json())
-                .then(res => console.log(res))
+                .then(res => this.elements = res)
         }
     }, 
 }
