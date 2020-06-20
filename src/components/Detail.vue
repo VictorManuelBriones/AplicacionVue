@@ -1,14 +1,8 @@
 <template>
     <div class="container">
-        <div v-for="e in elements" v-bind:key="e.id">
-              <b-card
-                    :title="e.title"
-              >
-              <b-card-text>
-                    {{e.description}}
-              </b-card-text>
-              </b-card>          
-        </div>
+        <b-card :title="e.title">
+        <b-card-text>{{e.description}}</b-card-text>
+        </b-card>
     </div>
 </template>
 
@@ -16,12 +10,12 @@
 export default {
 
     created(){
-        this.finAll()
+        this.find()
     },
 
     data() {
         return {
-            elemets: []  
+            elemets: Object
         };
     }, 
     //methods: {
