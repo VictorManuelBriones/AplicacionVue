@@ -3,6 +3,8 @@
         <div class="box" v-for="e in elements" v-bind:key="e">
             {{ e }}            
         </div>
+        <button v-on:click="findAll">Click</button>
+        {{ msj }}
     </div>
 </template>
 
@@ -10,9 +12,17 @@
 export default {
     data() {
         return {
-          elemets: ["Uno", "Dos", "Tres"]  
+            msj: "... :(",
+            elemets: ["Uno", "Dos", "Tres"]  
         };
-    }  
+    }, 
+    methods: {
+        findAll: function(){
+            fech('url')
+                .then(res => res.json())
+                .then(res => console.log(res))
+        }
+    }, 
 }
 </script>
 
