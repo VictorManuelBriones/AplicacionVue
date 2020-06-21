@@ -48,12 +48,10 @@ export default {
     },
     findCategory: function(id) {
       axios.get("http://localhost:8000/api/category/" + id + "/?format=json")
-        //.then(res => res.json())
         .then(res => (this.category = res.data));
     },
     findType: function(id) {
       axios.get("http://localhost:8000/api/type/" + id + "/?format=json")
-        //.then(res => res.json())
         .then(res => (this.type = res.data));
     }
   }
