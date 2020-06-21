@@ -1,45 +1,47 @@
 <template>
-    <div class="container"> 
-            Listado de categorias       
-        <div v-for="e in elements" v-bind:key="e.id">
-            <router-link :to="'/detail' + e.id">
-                <b-card
-                        :title="e.title"
-                >
-                <b-card-text>
-                        {{e.description}}
-                </b-card-text>
-                </b-card>
-            <router-link>          
-        </div>
-    </div>
+  <div>
+    <ListDefault :elements-list="elements" />
+  </div>
 </template>
 
 <script>
+import ListDefault from "../partials/_ListDefault";
+
 export default {
-
-    created(){
-        this.finAll()
-    },
-
-    data() {
-        return {
-            elemets: []  
-        };
-    }, 
-    //methods: {
-        //findAll: function(){
-            //fech('http://localhost:8000/api/category/'+this.$route.params.id+'/elements/?format=json')
-                //.then(res => res.json())
-                //.then(res => this.elements = res)
-        //}
-    //}, 
-}
+  components: {
+    ListDefault
+  },
+  created() {
+    this.findAll();
+  },
+  data() {
+    return {
+      elements: []
+    };
+  },
+  methods: {
+    findAll: function() {
+      fetch(
+        "http://localhost:8000/api/category/" +
+          this.$route.params.id +
+          "/elements/?format=json"
+      )
+        .then(res => res.json())
+        .then(res => (this.elements = res));
+    }
+  },
+  watch: {
+    "$route.params.id": function() {
+      console.log("Listado de categorías");
+      this.findAll();
+    }
+  }
+};
 </script>
 
-<style>
-    .box{
-        border: 3px solid #CCC;
-        margin: 5px 0 0 0; 
-    }
+<style >
+.box {
+  border: 3px solid #ccc;
+  margin: 5px 0 0 0;
+}
 </style>
