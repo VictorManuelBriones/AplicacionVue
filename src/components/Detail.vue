@@ -2,14 +2,14 @@
   <div>
     <b-card>
       <h1>{{ element.title }}</h1>
-      <div class="p-3">
+      <div class="p-3" v-if="element.category">
         <router-link
           class="btn btn-danger btn-sm"
-          :to="{ name:'list-category',params:{id: element.id} }"
+          :to="{ name:'list-category',params:{id: element.category} }"
         >{{ category.title }}</router-link>
         <router-link
           class="ml-2 btn btn-danger btn-sm"
-          :to="{ name:'list-type',params:{id: element.id} }"
+          :to="{ name:'list-type',params:{id: element.type} }"
         >{{ type.title }}</router-link>
         <b-card-text>{{ element.description }}</b-card-text>
       </div>
@@ -42,8 +42,8 @@ export default {
         .then(res => res.json())
         .then(res => {
           this.element = res;
-          this.findCategory(this.element.id);
-          this.findType(this.element.id);
+          this.findCategory(this.element.category);
+          this.findType(this.element.type);
         });
     },
     findCategory: function(id) {
